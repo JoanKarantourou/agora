@@ -54,3 +54,6 @@ data/raw/
 
 # Cleaned source texts
 data/clean/
+
+# Chunked source texts
+data/chunks/
