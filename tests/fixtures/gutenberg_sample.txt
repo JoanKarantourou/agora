@@ -1,0 +1,78 @@
+﻿The Project Gutenberg eBook of Sample, by Nobody
+
+This eBook is for the use of anyone anywhere in the United States and
+most other parts of the world at no cost and with almost no restrictions
+whatsoever. You may copy it, give it away or re-use it under the terms
+of the Project Gutenberg License included with this eBook or online
+at www.gutenberg.org.
+
+Title: Sample
+
+Author: Nobody
+
+Translator: A. Fictional
+
+Release date: January 1, 2000 [eBook #0]
+
+Language: English
+
+*** START OF THE PROJECT GUTENBERG EBOOK SAMPLE ***
+
+
+
+
+Produced by A. Volunteer and B. Volunteer
+
+
+
+
+Sample
+
+by Nobody
+
+Translated by A. Fictional
+
+
+Contents
+
+ INTRODUCTION
+ SAMPLE
+
+
+
+
+INTRODUCTION.
+
+
+This made-up introduction stands in for the translator's essay. It
+should be removed by the cleaner.
+
+
+
+
+SAMPLE
+
+
+First line of the dialogue, spoken by the first speaker.
+Second line of the dialogue, answered by the second.
+
+
+
+Third line of the dialogue, after a run of extra blank lines.
+Fourth line of the dialogue, with trailing spaces.   
+Last line of the dialogue.
+
+
+
+
+End of the Project Gutenberg EBook of Sample, by Nobody
+
+*** END OF THE PROJECT GUTENBERG EBOOK SAMPLE ***
+
+Updated editions will replace the previous one--the old editions will
+be renamed.
+
+START: FULL LICENSE
+
+THE FULL PROJECT GUTENBERG LICENSE
+PLEASE READ THIS BEFORE YOU DISTRIBUTE OR USE THIS WORK
