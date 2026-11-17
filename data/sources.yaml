@@ -1,0 +1,8 @@
+# Source texts for the corpus. Each entry is downloaded to data/raw/<id>.txt.
+sources:
+  - id: plato_apology
+    author: Plato
+    work: Apology
+    translator: Benjamin Jowett
+    # Project Gutenberg EBook #1656, plain text UTF-8, via the official PGLAF mirror.
+    url: https://gutenberg.pglaf.org/1/6/5/1656/1656-0.txt
