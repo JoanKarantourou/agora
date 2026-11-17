@@ -18,12 +18,17 @@ COLUMNS = [
     "chunk_id", "source_id", "author", "work", "translator", "part",
     "para_start", "para_end", "word_count", "text",
 ]
+CONNECT_TIMEOUT = 10  # seconds; fail fast instead of hanging when the database is down
 INSERT = f"INSERT INTO chunks ({', '.join(COLUMNS)}) VALUES ({', '.join(['%s'] * len(COLUMNS))})"
 
 
 def psycopg_url(url: str) -> str:
     """psycopg wants a plain libpq URL, without SQLAlchemy's "+psycopg" driver suffix."""
     return re.sub(r"^postgresql\+\w+://", "postgresql://", url)
+
+
+def connect() -> psycopg.Connection:
+    return psycopg.connect(psycopg_url(get_database_url()), connect_timeout=CONNECT_TIMEOUT)
 
 
 def read_chunks(source_id: str, chunks_dir: Path = CHUNKS_DIR) -> list[dict]:
@@ -41,7 +46,7 @@ def load_source(conn: psycopg.Connection, source_id: str, records: list[dict]) -
 
 
 def main() -> None:
-    with psycopg.connect(psycopg_url(get_database_url())) as conn:
+    with connect() as conn:
         for source in load_sources():
             deleted, inserted = load_source(conn, source["id"], read_chunks(source["id"]))
             print(f"load  {source['id']}: {deleted} deleted, {inserted} inserted")
