@@ -20,6 +20,9 @@ depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
     """Upgrade schema."""
+    # pgvector is needed from Phase 3 on. db/init creates it for the local Docker container, but
+    # other databases (CI, a fresh server) only get it here.
+    op.execute("CREATE EXTENSION IF NOT EXISTS vector")
     op.execute(
         """
         CREATE TABLE chunks (
@@ -42,3 +45,5 @@ def upgrade() -> None:
 def downgrade() -> None:
     """Downgrade schema."""
     op.execute("DROP TABLE chunks")
+    # The vector extension is left in place: the local db/init script also creates it, so this
+    # migration does not own it.

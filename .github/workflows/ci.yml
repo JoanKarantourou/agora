@@ -8,6 +8,25 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: pgvector/pgvector:pg18
+        env:
+          POSTGRES_USER: agora
+          POSTGRES_PASSWORD: agora_ci
+          POSTGRES_DB: agora
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U agora -d agora"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      DATABASE_URL: postgresql+psycopg://agora:agora_ci@127.0.0.1:5432/agora
+
     steps:
       - uses: actions/checkout@v7
 
@@ -19,6 +38,9 @@ jobs:
 
       - name: Install dependencies
         run: uv sync
+
+      - name: Run migrations
+        run: uv run alembic upgrade head
 
       - name: Run tests
         run: uv run pytest -v
