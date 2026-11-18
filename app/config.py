@@ -11,6 +11,14 @@ ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / ".env")
 
 
+def get_ollama_model() -> str:
+    return os.environ.get("OLLAMA_MODEL", "qwen2.5:7b")
+
+
+def get_ollama_url() -> str:
+    return os.environ.get("OLLAMA_URL", "http://localhost:11434")
+
+
 def get_database_url() -> str:
     url = os.environ.get("DATABASE_URL")
     if not url:
