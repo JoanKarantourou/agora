@@ -1,6 +1,6 @@
 """Smoke test for the local LLM: stream one answer from Ollama and time it.
 
-Model and server come from OLLAMA_MODEL / OLLAMA_URL (defaults: qwen2.5:7b, http://localhost:11434).
+Model and server come from OLLAMA_MODEL / OLLAMA_URL (defaults: qwen2.5:7b, http://127.0.0.1:11434).
 """
 
 import sys
