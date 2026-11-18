@@ -1,10 +1,12 @@
 import time
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Protocol
 
 from fastapi import Depends, FastAPI, Query, Request
 from fastapi.concurrency import run_in_threadpool
+from fastapi.responses import FileResponse
 from fastapi.sse import EventSourceResponse, ServerSentEvent
 from pydantic import BaseModel, Field
 
@@ -14,6 +16,7 @@ from app.rag.prompt import NOT_FOUND, build_messages
 from app.search import SearchHit, search_chunks
 
 ASK_PASSAGES = 5
+CHAT_PAGE = Path(__file__).resolve().parent / "static" / "index.html"
 
 
 class ChatsWithLLM(Protocol):
@@ -73,6 +76,11 @@ def to_sources(hits: list[SearchHit]) -> list[Source]:
         Source(n=n, work=h.work, section=h.part, text=h.text, score=h.similarity)
         for n, h in enumerate(hits, start=1)
     ]
+
+
+@app.get("/", include_in_schema=False)
+def chat_page() -> FileResponse:
+    return FileResponse(CHAT_PAGE, media_type="text/html")
 
 
 @app.get("/health")
