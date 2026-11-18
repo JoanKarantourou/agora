@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from ollama import Client  # noqa: E402
 
-from app.config import get_ollama_model, get_ollama_url  # noqa: E402
+from app.config import get_ollama_keep_alive, get_ollama_model, get_ollama_url  # noqa: E402
 
 QUESTION = "In one sentence, who was Socrates?"
 
@@ -24,7 +24,10 @@ def main() -> None:
     start = time.perf_counter()
     first_token = None
     stream = Client(host=url).chat(
-        model=model, messages=[{"role": "user", "content": QUESTION}], stream=True
+        model=model,
+        messages=[{"role": "user", "content": QUESTION}],
+        keep_alive=get_ollama_keep_alive(),
+        stream=True,
     )
     for part in stream:
         text = part.message.content

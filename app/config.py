@@ -19,6 +19,11 @@ def get_ollama_url() -> str:
     return os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434")
 
 
+def get_ollama_keep_alive() -> str:
+    """How long Ollama keeps the model loaded after a call (Ollama's own default is 5m)."""
+    return os.environ.get("OLLAMA_KEEP_ALIVE", "30m")
+
+
 def get_database_url() -> str:
     url = os.environ.get("DATABASE_URL")
     if not url:
