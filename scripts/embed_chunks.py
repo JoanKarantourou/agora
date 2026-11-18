@@ -14,16 +14,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import torch  # noqa: E402
 from sentence_transformers import SentenceTransformer  # noqa: E402
 
-from load import connect  # noqa: E402
+from app.db import connect  # noqa: E402
+from app.embeddings import MODEL_NAME, to_pgvector  # noqa: E402
 
-MODEL_NAME = "BAAI/bge-base-en-v1.5"
 BATCH_SIZE = 32
 UPDATE = "UPDATE chunks SET embedding = %s::vector WHERE chunk_id = %s"
-
-
-def to_pgvector(vector) -> str:
-    """pgvector's text format: '[0.1,0.2,...]'."""
-    return "[" + ",".join(f"{x:.7g}" for x in vector) + "]"
 
 
 def main() -> None:
