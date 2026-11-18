@@ -4,6 +4,8 @@ from contextlib import asynccontextmanager
 from typing import Protocol
 
 from fastapi import Depends, FastAPI, Query, Request
+from fastapi.concurrency import run_in_threadpool
+from fastapi.sse import EventSourceResponse, ServerSentEvent
 from pydantic import BaseModel, Field
 
 from app.embeddings import Embedder
@@ -16,6 +18,8 @@ ASK_PASSAGES = 5
 
 class ChatsWithLLM(Protocol):
     def chat(self, messages: list[dict[str, str]]) -> str: ...
+
+    def stream(self, messages: list[dict[str, str]]) -> AsyncIterator[str]: ...
 
 
 @asynccontextmanager
@@ -64,6 +68,13 @@ def elapsed_ms(start: float) -> float:
     return round((time.perf_counter() - start) * 1000, 1)
 
 
+def to_sources(hits: list[SearchHit]) -> list[Source]:
+    return [
+        Source(n=n, work=h.work, section=h.part, text=h.text, score=h.similarity)
+        for n, h in enumerate(hits, start=1)
+    ]
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
@@ -93,10 +104,39 @@ def ask(
     answer = llm.chat(build_messages(body.question, hits)) if hits else NOT_FOUND
     llm_ms = elapsed_ms(start) if hits else 0.0
 
-    sources = [
-        Source(n=n, work=h.work, section=h.part, text=h.text, score=h.similarity)
-        for n, h in enumerate(hits, start=1)
-    ]
     return AskResponse(
-        answer=answer, sources=sources, timings=Timings(search_ms=search_ms, llm_ms=llm_ms)
+        answer=answer, sources=to_sources(hits), timings=Timings(search_ms=search_ms, llm_ms=llm_ms)
+    )
+
+
+@app.post("/ask/stream", response_class=EventSourceResponse)
+async def ask_stream(
+    body: AskRequest,
+    embedder: Embedder = Depends(get_embedder),
+    llm: ChatsWithLLM = Depends(get_llm),
+) -> AsyncIterator[ServerSentEvent]:
+    """Events, in order: "sources" (list), "token" (one per text piece), "done" (timings).
+
+    Every data field is JSON, so a token is a quoted string and may contain newlines.
+    """
+    start = time.perf_counter()
+    # Search is blocking (embedding + psycopg), so it runs in a worker thread.
+    hits = await run_in_threadpool(search_chunks, body.question, ASK_PASSAGES, embedder)
+    search_ms = elapsed_ms(start)
+    yield ServerSentEvent(event="sources", data=[s.model_dump() for s in to_sources(hits)])
+
+    first_token_ms = None
+    if hits:
+        async for token in llm.stream(build_messages(body.question, hits)):
+            if first_token_ms is None:
+                first_token_ms = elapsed_ms(start)
+            yield ServerSentEvent(event="token", data=token)
+    else:
+        # With nothing to ground an answer in, skip the LLM rather than let it answer from memory.
+        first_token_ms = elapsed_ms(start)
+        yield ServerSentEvent(event="token", data=NOT_FOUND)
+
+    yield ServerSentEvent(
+        event="done",
+        data={"search_ms": search_ms, "first_token_ms": first_token_ms, "total_ms": elapsed_ms(start)},
     )
