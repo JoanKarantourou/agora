@@ -1,0 +1,724 @@
+{
+  "run_at": "2026-11-19T09:44:41",
+  "mode": "keyword",
+  "model": "BM25Okapi (rank_bm25)",
+  "top_k": 5,
+  "golden_set": "evals/golden_set.jsonl",
+  "skipped_unanswerable": 4,
+  "summary": {
+    "overall": {
+      "n": 26,
+      "hit_at_5": 0.6153846153846154,
+      "recall_at_5": 0.4198717948717949,
+      "mrr": 0.4724358974358974
+    },
+    "by_type": {
+      "quote": {
+        "n": 8,
+        "hit_at_5": 0.875,
+        "recall_at_5": 0.875,
+        "mrr": 0.7916666666666666
+      },
+      "paraphrase": {
+        "n": 10,
+        "hit_at_5": 0.4,
+        "recall_at_5": 0.23333333333333334,
+        "mrr": 0.195
+      },
+      "concept": {
+        "n": 8,
+        "hit_at_5": 0.625,
+        "recall_at_5": 0.19791666666666666,
+        "mrr": 0.5
+      }
+    }
+  },
+  "misses": [
+    "q04",
+    "q11",
+    "q13",
+    "q14",
+    "q16",
+    "q17",
+    "q18",
+    "q22",
+    "q23",
+    "q24"
+  ],
+  "questions": [
+    {
+      "id": "q01",
+      "type": "quote",
+      "question": "Who said a life without examination isn't worth living, and at what point in the trial?",
+      "expected_chunk_ids": [
+        "plato_apology-054"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-054",
+        "plato_apology-016",
+        "plato_apology-049",
+        "plato_apology-060",
+        "plato_apology-033"
+      ],
+      "returned_scores": [
+        6.0422,
+        4.617,
+        4.4423,
+        4.3302,
+        4.3184
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "q02",
+      "type": "quote",
+      "question": "Which passage has Socrates calling himself the gadfly of Athens?",
+      "expected_chunk_ids": [
+        "plato_apology-038",
+        "plato_apology-039"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-038",
+        "plato_apology-041",
+        "plato_apology-039",
+        "plato_apology-027",
+        "plato_apology-016"
+      ],
+      "returned_scores": [
+        4.9231,
+        3.8314,
+        3.0908,
+        2.3348,
+        1.9482
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "q03",
+      "type": "quote",
+      "question": "Where does Socrates say he is wiser only because he doesn't imagine he knows what he doesn't?",
+      "expected_chunk_ids": [
+        "plato_apology-012"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-034",
+        "plato_apology-016",
+        "plato_apology-012",
+        "plato_apology-037",
+        "plato_apology-011"
+      ],
+      "returned_scores": [
+        6.5872,
+        6.0299,
+        5.7363,
+        4.7883,
+        4.5467
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "reciprocal_rank": 0.3333333333333333
+    },
+    {
+      "id": "q04",
+      "type": "quote",
+      "question": "How does the speech end, the line about him going off to die and the jurors going on to live?",
+      "expected_chunk_ids": [
+        "plato_apology-062"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-058",
+        "plato_apology-038",
+        "plato_apology-040",
+        "plato_apology-047",
+        "plato_apology-011"
+      ],
+      "returned_scores": [
+        9.8096,
+        7.7029,
+        5.4588,
+        5.4269,
+        5.2553
+      ],
+      "hit_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "q05",
+      "type": "quote",
+      "question": "Where does Socrates tell the jury he will obey the god rather than them?",
+      "expected_chunk_ids": [
+        "plato_apology-035"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-035",
+        "plato_apology-020",
+        "plato_apology-016",
+        "plato_apology-026",
+        "plato_apology-054"
+      ],
+      "returned_scores": [
+        7.0721,
+        3.9743,
+        3.2287,
+        2.9376,
+        2.8409
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "q06",
+      "type": "quote",
+      "question": "Who said that nothing bad can happen to a good man, alive or dead?",
+      "expected_chunk_ids": [
+        "plato_apology-061"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-061",
+        "plato_apology-037",
+        "plato_apology-022",
+        "plato_apology-033",
+        "plato_apology-026"
+      ],
+      "returned_scores": [
+        5.4604,
+        4.2647,
+        4.2239,
+        3.6643,
+        3.3637
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "q07",
+      "type": "quote",
+      "question": "Where is the line that wickedness is harder to escape than death because it runs faster?",
+      "expected_chunk_ids": [
+        "plato_apology-056"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-056",
+        "plato_apology-057",
+        "plato_apology-035",
+        "plato_apology-059",
+        "plato_apology-032"
+      ],
+      "returned_scores": [
+        12.4763,
+        5.1414,
+        3.6165,
+        1.8632,
+        1.8306
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "q08",
+      "type": "quote",
+      "question": "Where does Socrates borrow Homer's words to say he isn't made of wood or stone?",
+      "expected_chunk_ids": [
+        "plato_apology-046"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-046",
+        "plato_apology-055",
+        "plato_apology-025",
+        "plato_apology-006",
+        "plato_apology-001"
+      ],
+      "returned_scores": [
+        6.7735,
+        4.3848,
+        4.365,
+        4.3006,
+        3.9463
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "q09",
+      "type": "paraphrase",
+      "question": "What did the priestess reply when his friend asked whether anybody surpassed Socrates in wisdom?",
+      "expected_chunk_ids": [
+        "plato_apology-010",
+        "plato_apology-011"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-010",
+        "plato_apology-009",
+        "plato_apology-035",
+        "plato_apology-015",
+        "plato_apology-046"
+      ],
+      "returned_scores": [
+        8.9569,
+        6.7746,
+        6.3911,
+        5.3424,
+        4.8563
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 0.5,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "q10",
+      "type": "paraphrase",
+      "question": "Why won't Socrates parade his family before the jury to win their pity?",
+      "expected_chunk_ids": [
+        "plato_apology-046",
+        "plato_apology-047",
+        "plato_apology-048"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-050",
+        "plato_apology-046",
+        "plato_apology-027",
+        "plato_apology-026",
+        "plato_apology-016"
+      ],
+      "returned_scores": [
+        3.2335,
+        2.7916,
+        1.8941,
+        1.8198,
+        1.6004
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 0.3333333333333333,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "q11",
+      "type": "paraphrase",
+      "question": "What did Socrates learn when he tested people who work with their hands?",
+      "expected_chunk_ids": [
+        "plato_apology-015"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-044",
+        "plato_apology-062",
+        "plato_apology-010",
+        "plato_apology-027",
+        "plato_apology-026"
+      ],
+      "returned_scores": [
+        5.9927,
+        3.8718,
+        3.2549,
+        1.8941,
+        1.8198
+      ],
+      "hit_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "q12",
+      "type": "paraphrase",
+      "question": "Do the authors of plays and verse understand their own works, according to Socrates?",
+      "expected_chunk_ids": [
+        "plato_apology-014"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-048",
+        "plato_apology-005",
+        "plato_apology-054",
+        "plato_apology-014",
+        "plato_apology-025"
+      ],
+      "returned_scores": [
+        5.167,
+        3.1233,
+        3.079,
+        2.5499,
+        2.5499
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "reciprocal_rank": 0.25
+    },
+    {
+      "id": "q13",
+      "type": "paraphrase",
+      "question": "What does Socrates propose the city give him in place of a punishment?",
+      "expected_chunk_ids": [
+        "plato_apology-050",
+        "plato_apology-051"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-054",
+        "plato_apology-023",
+        "plato_apology-053",
+        "plato_apology-057",
+        "plato_apology-047"
+      ],
+      "returned_scores": [
+        5.3734,
+        5.3349,
+        5.181,
+        5.1191,
+        4.6871
+      ],
+      "hit_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "q14",
+      "type": "paraphrase",
+      "question": "Why does Socrates refuse to accept banishment as his sentence?",
+      "expected_chunk_ids": [
+        "plato_apology-053"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-029",
+        "plato_apology-027",
+        "plato_apology-026",
+        "plato_apology-016",
+        "plato_apology-006"
+      ],
+      "returned_scores": [
+        4.408,
+        1.8941,
+        1.8198,
+        1.6004,
+        1.4676
+      ],
+      "hit_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "q15",
+      "type": "paraphrase",
+      "question": "What is the private divine warning Socrates has had since boyhood, and what does it do?",
+      "expected_chunk_ids": [
+        "plato_apology-040",
+        "plato_apology-058"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-035",
+        "plato_apology-030",
+        "plato_apology-033",
+        "plato_apology-043",
+        "plato_apology-040"
+      ],
+      "returned_scores": [
+        4.5994,
+        3.818,
+        3.793,
+        3.1379,
+        3.1109
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 0.5,
+      "reciprocal_rank": 0.2
+    },
+    {
+      "id": "q16",
+      "type": "paraphrase",
+      "question": "What did Socrates do when the oligarchs ordered him to help seize a man for execution?",
+      "expected_chunk_ids": [
+        "plato_apology-042"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-027",
+        "plato_apology-030",
+        "plato_apology-034",
+        "plato_apology-012",
+        "plato_apology-026"
+      ],
+      "returned_scores": [
+        5.1322,
+        3.4158,
+        3.2295,
+        2.6163,
+        1.8198
+      ],
+      "hit_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "q17",
+      "type": "paraphrase",
+      "question": "When Socrates served on the city council, how did he stand against an unlawful group trial?",
+      "expected_chunk_ids": [
+        "plato_apology-041"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-019",
+        "plato_apology-055",
+        "plato_apology-035",
+        "plato_apology-053",
+        "plato_apology-047"
+      ],
+      "returned_scores": [
+        3.9194,
+        3.2281,
+        3.1496,
+        3.1364,
+        3.0212
+      ],
+      "hit_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "q18",
+      "type": "paraphrase",
+      "question": "Did Socrates ever earn a living from his conversations?",
+      "expected_chunk_ids": [
+        "plato_apology-007",
+        "plato_apology-039",
+        "plato_apology-043"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-054",
+        "plato_apology-033",
+        "plato_apology-029",
+        "plato_apology-006",
+        "plato_apology-031"
+      ],
+      "returned_scores": [
+        3.8061,
+        3.3866,
+        2.9397,
+        2.76,
+        2.4023
+      ],
+      "hit_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "q19",
+      "type": "concept",
+      "question": "Why does Socrates not fear death?",
+      "expected_chunk_ids": [
+        "plato_apology-034",
+        "plato_apology-058",
+        "plato_apology-059",
+        "plato_apology-061"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-034",
+        "plato_apology-041",
+        "plato_apology-055",
+        "plato_apology-033",
+        "plato_apology-035"
+      ],
+      "returned_scores": [
+        7.3861,
+        4.3879,
+        2.5917,
+        2.4126,
+        2.0969
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 0.25,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "q20",
+      "type": "concept",
+      "question": "What does Socrates think might happen to us after we die?",
+      "expected_chunk_ids": [
+        "plato_apology-059",
+        "plato_apology-060"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-061",
+        "plato_apology-059",
+        "plato_apology-009",
+        "plato_apology-033",
+        "plato_apology-058"
+      ],
+      "returned_scores": [
+        6.3185,
+        4.0487,
+        3.3135,
+        3.2801,
+        3.2023
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 0.5,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "q21",
+      "type": "concept",
+      "question": "Does Socrates claim to know more than everyone else, and if not, what gives him the edge?",
+      "expected_chunk_ids": [
+        "plato_apology-012",
+        "plato_apology-016",
+        "plato_apology-034"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-034",
+        "plato_apology-030",
+        "plato_apology-051",
+        "plato_apology-002",
+        "plato_apology-026"
+      ],
+      "returned_scores": [
+        4.0211,
+        3.8415,
+        3.4375,
+        3.3293,
+        2.5293
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 0.3333333333333333,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "q22",
+      "type": "concept",
+      "question": "Why did Socrates never take up a career in government?",
+      "expected_chunk_ids": [
+        "plato_apology-040",
+        "plato_apology-043",
+        "plato_apology-050"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-041",
+        "plato_apology-035",
+        "plato_apology-036",
+        "plato_apology-007",
+        "plato_apology-019"
+      ],
+      "returned_scores": [
+        3.408,
+        3.213,
+        2.9744,
+        2.852,
+        2.4315
+      ],
+      "hit_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "q23",
+      "type": "concept",
+      "question": "What does Socrates think people should prioritize in life?",
+      "expected_chunk_ids": [
+        "plato_apology-035",
+        "plato_apology-036"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-010",
+        "plato_apology-044",
+        "plato_apology-026",
+        "plato_apology-054",
+        "plato_apology-033"
+      ],
+      "returned_scores": [
+        3.2549,
+        2.9963,
+        2.7058,
+        2.3828,
+        2.1202
+      ],
+      "hit_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "q24",
+      "type": "concept",
+      "question": "Why does Socrates believe his accusers cannot truly hurt him?",
+      "expected_chunk_ids": [
+        "plato_apology-037",
+        "plato_apology-061"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-003",
+        "plato_apology-019",
+        "plato_apology-027",
+        "plato_apology-026",
+        "plato_apology-048"
+      ],
+      "returned_scores": [
+        5.0789,
+        3.6305,
+        3.5194,
+        3.3815,
+        3.1368
+      ],
+      "hit_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "reciprocal_rank": 0.0
+    },
+    {
+      "id": "q25",
+      "type": "concept",
+      "question": "Why is Socrates so widely disliked in Athens?",
+      "expected_chunk_ids": [
+        "plato_apology-012",
+        "plato_apology-016",
+        "plato_apology-017",
+        "plato_apology-018"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-027",
+        "plato_apology-016",
+        "plato_apology-026",
+        "plato_apology-035",
+        "plato_apology-019"
+      ],
+      "returned_scores": [
+        2.3348,
+        1.9482,
+        1.8198,
+        1.6533,
+        1.5453
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 0.25,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "q26",
+      "type": "concept",
+      "question": "How does Socrates defend himself against the claim that he is a bad influence on young people?",
+      "expected_chunk_ids": [
+        "plato_apology-020",
+        "plato_apology-021",
+        "plato_apology-023",
+        "plato_apology-044"
+      ],
+      "returned_chunk_ids": [
+        "plato_apology-044",
+        "plato_apology-026",
+        "plato_apology-043",
+        "plato_apology-022",
+        "plato_apology-002"
+      ],
+      "returned_scores": [
+        5.0298,
+        4.1527,
+        3.6687,
+        3.358,
+        3.3293
+      ],
+      "hit_at_5": 1.0,
+      "recall_at_5": 0.25,
+      "reciprocal_rank": 1.0
+    }
+  ]
+}
