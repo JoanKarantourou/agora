@@ -1,7 +1,8 @@
 """Score retrieval against the golden set: hit@5, recall@5 and MRR, overall and per question type.
 
 --mode vector (default) uses the same search function as /search and /ask, with the real model;
---mode keyword uses BM25 keyword search (app.keyword_search). Both read the local database.
+--mode keyword uses BM25 keyword search (app.keyword_search);
+--mode hybrid fuses the two with Reciprocal Rank Fusion (app.hybrid_search). All read the local database.
 Unanswerable questions are skipped: they have no expected chunks to find.
 Prints a summary and saves full results to evals/results/retrieval_<mode>_<date>.json.
 """
@@ -18,6 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from app.embeddings import MODEL_NAME, Embedder  # noqa: E402
+from app.hybrid_search import CANDIDATES, RRF_K, hybrid_search  # noqa: E402
 from app.keyword_search import keyword_search  # noqa: E402
 from app.search import SearchHit, search_chunks  # noqa: E402
 
@@ -25,7 +27,7 @@ GOLDEN_SET = ROOT / "evals" / "golden_set.jsonl"
 RESULTS_DIR = ROOT / "evals" / "results"
 TOP_K = 5
 TYPES = ["quote", "paraphrase", "concept"]
-MODES = ["vector", "keyword"]
+MODES = ["vector", "keyword", "hybrid"]
 
 
 def score(expected: list[str], returned: list[str]) -> dict[str, float]:
@@ -55,6 +57,8 @@ def searcher(mode: str) -> Callable[[str], list[SearchHit]]:
     if mode == "keyword":
         return lambda question: keyword_search(question, TOP_K)
     embedder = Embedder.load()
+    if mode == "hybrid":
+        return lambda question: hybrid_search(question, TOP_K, embedder)
     return lambda question: search_chunks(question, TOP_K, embedder)
 
 
@@ -77,7 +81,7 @@ def main() -> None:
             "question": e["question"],
             "expected_chunk_ids": e["expected_chunk_ids"],
             "returned_chunk_ids": returned,
-            # cosine similarity in vector mode, BM25 score in keyword mode
+            # cosine similarity (vector), BM25 score (keyword) or RRF score (hybrid)
             "returned_scores": [round(h.similarity, 4) for h in hits],
             **score(e["expected_chunk_ids"], returned),
         })
@@ -103,7 +107,11 @@ def main() -> None:
         json.dumps({
             "run_at": datetime.now().isoformat(timespec="seconds"),
             "mode": mode,
-            "model": MODEL_NAME if mode == "vector" else "BM25Okapi (rank_bm25)",
+            "model": {
+                "vector": MODEL_NAME,
+                "keyword": "BM25Okapi (rank_bm25)",
+                "hybrid": f"RRF(k={RRF_K}) of {MODEL_NAME} and BM25Okapi, top {CANDIDATES} each",
+            }[mode],
             "top_k": TOP_K,
             "golden_set": GOLDEN_SET.relative_to(ROOT).as_posix(),
             "skipped_unanswerable": len(entries) - len(scored),

@@ -1,7 +1,10 @@
-"""Compare two retrieval results files side by side, and list the questions only one of them hits.
+"""Compare retrieval results files side by side, and list the questions only some of them hit.
 
-Usage: uv run python evals/compare_retrieval.py A.json B.json
-(e.g. evals/results/retrieval_vector_<date>.json evals/results/retrieval_keyword_<date>.json)
+Usage: uv run python evals/compare_retrieval.py A.json B.json [C.json ...]
+(e.g. evals/results/retrieval_hybrid_<date>.json retrieval_vector_<date>.json retrieval_keyword_<date>.json)
+
+With three or more files, also reports how many of the questions any of the other files hit
+the first file keeps, and which it loses.
 """
 
 import json
@@ -9,12 +12,14 @@ import sys
 from pathlib import Path
 
 ROWS = ["overall", "quote", "paraphrase", "concept"]
-METRICS = [("hit_at_5", "hit@5"), ("recall_at_5", "recall@5"), ("mrr", "MRR")]
+WIDTH = 26
 
 
 def load(path: str) -> dict:
     data = json.loads(Path(path).read_text(encoding="utf-8"))
     data["label"] = data.get("mode", Path(path).stem)
+    data["hits"] = {q["id"] for q in data["questions"] if q["hit_at_5"]}
+    data["by_id"] = {q["id"]: q for q in data["questions"]}
     return data
 
 
@@ -23,34 +28,50 @@ def summary_row(data: dict, row: str) -> dict:
     return s["overall"] if row == "overall" else s["by_type"][row]
 
 
-def only_hits(a: dict, b: dict) -> list[dict]:
-    """Questions a hits (an expected chunk in its top 5) that b misses."""
-    b_hits = {q["id"]: q["hit_at_5"] for q in b["questions"]}
-    return [q for q in a["questions"] if q["hit_at_5"] and not b_hits[q["id"]]]
+def first_rank(q: dict) -> int:
+    return next(i for i, c in enumerate(q["returned_chunk_ids"], 1) if c in q["expected_chunk_ids"])
+
+
+def print_question(data: dict, qid: str, note: str) -> None:
+    q = data["by_id"][qid]
+    print(f"  {qid} [{q['type']}] {note}  {q['question']}")
 
 
 def main() -> None:
-    if len(sys.argv) != 3:
+    if len(sys.argv) < 3:
         sys.exit(__doc__)
-    a, b = load(sys.argv[1]), load(sys.argv[2])
+    runs = [load(p) for p in sys.argv[1:]]
 
-    width = 26
-    print(f"{'':<12}" + "".join(f"{d['label']:<{width}}" for d in (a, b)))
-    print(f"{'':<12}" + "".join(f"{'hit@5  recall@5  MRR':<{width}}" for _ in (a, b)))
+    print(f"{'':<12}" + "".join(f"{d['label']:<{WIDTH}}" for d in runs))
+    print(f"{'':<12}" + "".join(f"{'hit@5  recall@5  MRR':<{WIDTH}}" for _ in runs))
     for row in ROWS:
         cells = []
-        for d in (a, b):
+        for d in runs:
             s = summary_row(d, row)
-            cells.append(f"{s['hit_at_5']:.3f}  {s['recall_at_5']:.3f}     {s['mrr']:.3f}".ljust(width))
-        n = summary_row(a, row)["n"]
-        print(f"{row:<12}" + "".join(cells) + f"(n={n})")
+            cells.append(f"{s['hit_at_5']:.3f}  {s['recall_at_5']:.3f}     {s['mrr']:.3f}".ljust(WIDTH))
+        print(f"{row:<12}" + "".join(cells) + f"(n={summary_row(runs[0], row)['n']})")
 
-    for first, second in ((b, a), (a, b)):
-        found = only_hits(first, second)
-        print(f"\n{first['label']} hits, {second['label']} misses: {len(found)}")
-        for q in found:
-            rank = next(i for i, c in enumerate(q["returned_chunk_ids"], 1) if c in q["expected_chunk_ids"])
-            print(f"  {q['id']} [{q['type']}] rank {rank} in {first['label']}  {q['question']}")
+    first = runs[0]
+    for other in runs[1:]:
+        for a, b in ((first, other), (other, first)):
+            only = sorted(a["hits"] - b["hits"])
+            print(f"\n{a['label']} hits, {b['label']} misses: {len(only)}")
+            for qid in only:
+                print_question(a, qid, f"rank {first_rank(a['by_id'][qid])} in {a['label']}")
+
+    if len(runs) >= 3:
+        union = set().union(*(d["hits"] for d in runs[1:]))
+        lost = sorted(union - first["hits"])
+        labels = " or ".join(d["label"] for d in runs[1:])
+        print(f"\n{first['label']} keeps {len(union) - len(lost)}/{len(union)} of the questions "
+              f"{labels} hits; lost: {len(lost)}")
+        for qid in lost:
+            found_by = ", ".join(f"{d['label']} rank {first_rank(d['by_id'][qid])}"
+                                 for d in runs[1:] if qid in d["hits"])
+            print_question(first, qid, f"(found by {found_by})")
+        gained = sorted(first["hits"] - union)
+        if gained:
+            print(f"{first['label']} also hits {len(gained)} that none of the others hit: {', '.join(gained)}")
 
 
 if __name__ == "__main__":
