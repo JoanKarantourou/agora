@@ -1,0 +1,1158 @@
+{
+  "run_at": "2026-11-19T08:36:35",
+  "answer_model": "qwen2.5:7b",
+  "judge_model": "qwen2.5:7b",
+  "judge_temperature": 0,
+  "golden_set": "evals/golden_set.jsonl",
+  "summary": {
+    "mean_faithfulness": 0.9666666666666667,
+    "faithfulness_by_type": {
+      "quote": 1.0,
+      "paraphrase": 1.0,
+      "concept": 0.9
+    },
+    "answers_scored": 15,
+    "answerable_refused": [
+      "q01",
+      "q02",
+      "q07",
+      "q08",
+      "q10",
+      "q17",
+      "q18",
+      "q20",
+      "q21",
+      "q25"
+    ],
+    "answerable_empty": [
+      "q05"
+    ],
+    "refusal_rate_unanswerable": 0.75,
+    "exact_not_found_unanswerable": 3,
+    "citation_validity_rate": 1,
+    "answers_with_citations": 18,
+    "answerable_without_citations": []
+  },
+  "questions": [
+    {
+      "id": "q01",
+      "type": "quote",
+      "question": "Who said a life without examination isn't worth living, and at what point in the trial?",
+      "expected_chunk_ids": [
+        "plato_apology-054"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-056",
+        "plato_apology-035",
+        "plato_apology-061",
+        "plato_apology-053",
+        "plato_apology-060"
+      ],
+      "answer": "I can't find that in the texts I have.",
+      "exact_not_found": true,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [],
+      "cited_chunk_ids": [],
+      "invalid_citations": [],
+      "citations_valid": null,
+      "timings": {
+        "search_ms": 363.0,
+        "llm_ms": 474.0
+      },
+      "claims": [],
+      "faithfulness": null
+    },
+    {
+      "id": "q02",
+      "type": "quote",
+      "question": "Which passage has Socrates calling himself the gadfly of Athens?",
+      "expected_chunk_ids": [
+        "plato_apology-038",
+        "plato_apology-039"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-047",
+        "plato_apology-009",
+        "plato_apology-055",
+        "plato_apology-019",
+        "plato_apology-017"
+      ],
+      "answer": "I can't find that in the texts I have.",
+      "exact_not_found": true,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [],
+      "cited_chunk_ids": [],
+      "invalid_citations": [],
+      "citations_valid": null,
+      "timings": {
+        "search_ms": 19.5,
+        "llm_ms": 482.4
+      },
+      "claims": [],
+      "faithfulness": null
+    },
+    {
+      "id": "q03",
+      "type": "quote",
+      "question": "Where does Socrates say he is wiser only because he doesn't imagine he knows what he doesn't?",
+      "expected_chunk_ids": [
+        "plato_apology-012"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-016",
+        "plato_apology-017",
+        "plato_apology-009",
+        "plato_apology-054",
+        "plato_apology-033"
+      ],
+      "answer": "[1] Socrates says he is wiser only because he knows that his wisdom is worth little or nothing, as he states: \"he, O men, is the wisest, who, like Socrates, knows that his wisdom is in truth worth nothing.\"",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        1
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-016"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 20.6,
+        "llm_ms": 757.2
+      },
+      "claims": [
+        {
+          "claim": "Socrates says he is wiser only because he knows that his wisdom is worth little or nothing.",
+          "supported": true,
+          "reason": "Passage [1] states: 'he, O men, is the wisest, who, like Socrates, knows that his wisdom is in truth worth nothing.'"
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q04",
+      "type": "quote",
+      "question": "How does the speech end, the line about him going off to die and the jurors going on to live?",
+      "expected_chunk_ids": [
+        "plato_apology-062"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-056",
+        "plato_apology-053",
+        "plato_apology-058",
+        "plato_apology-057",
+        "plato_apology-037"
+      ],
+      "answer": "[3] (Apology, final): And now, O men who have condemned me, I would fain prophesy to you; for I am about to die, and in the hour of death men are gifted with prophetic power.",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        3
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-058"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 31.6,
+        "llm_ms": 683.2
+      },
+      "claims": [
+        {
+          "claim": "And now, O men who have condemned me, I would fain prophesy to you; for I am about to die, and in the hour of death men are gifted with prophetic power.",
+          "supported": true,
+          "reason": "This quote is directly stated in passage [3]."
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q05",
+      "type": "quote",
+      "question": "Where does Socrates tell the jury he will obey the god rather than them?",
+      "expected_chunk_ids": [
+        "plato_apology-035"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-035",
+        "plato_apology-054",
+        "plato_apology-038",
+        "plato_apology-048",
+        "plato_apology-033"
+      ],
+      "answer": "[1]",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": true,
+      "cited_numbers": [
+        1
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-035"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 18.4,
+        "llm_ms": 92.8
+      },
+      "claims": [],
+      "faithfulness": null
+    },
+    {
+      "id": "q06",
+      "type": "quote",
+      "question": "Who said that nothing bad can happen to a good man, alive or dead?",
+      "expected_chunk_ids": [
+        "plato_apology-061"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-061",
+        "plato_apology-033",
+        "plato_apology-037",
+        "plato_apology-022",
+        "plato_apology-056"
+      ],
+      "answer": "[1] (Apology, final): Wherefore, O judges, be of good cheer about death, and know of a certainty, that no evil can happen to a good man, either in life or after death. [2]",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        1,
+        2
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-061",
+        "plato_apology-033"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 18.1,
+        "llm_ms": 669.5
+      },
+      "claims": [
+        {
+          "claim": "Socrates said that nothing bad can happen to a good man, alive or dead.",
+          "supported": true,
+          "reason": "This claim is directly stated in passage [1]."
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q07",
+      "type": "quote",
+      "question": "Where is the line that wickedness is harder to escape than death because it runs faster?",
+      "expected_chunk_ids": [
+        "plato_apology-056"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-056",
+        "plato_apology-022",
+        "plato_apology-057",
+        "plato_apology-053",
+        "plato_apology-061"
+      ],
+      "answer": "[1] I can't find that in the texts I have.",
+      "exact_not_found": false,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [
+        1
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-056"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 19.3,
+        "llm_ms": 458.1
+      },
+      "claims": [],
+      "faithfulness": null
+    },
+    {
+      "id": "q08",
+      "type": "quote",
+      "question": "Where does Socrates borrow Homer's words to say he isn't made of wood or stone?",
+      "expected_chunk_ids": [
+        "plato_apology-046"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-033",
+        "plato_apology-055",
+        "plato_apology-009",
+        "plato_apology-054",
+        "plato_apology-006"
+      ],
+      "answer": "I can't find that in the texts I have.",
+      "exact_not_found": true,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [],
+      "cited_chunk_ids": [],
+      "invalid_citations": [],
+      "citations_valid": null,
+      "timings": {
+        "search_ms": 18.7,
+        "llm_ms": 531.4
+      },
+      "claims": [],
+      "faithfulness": null
+    },
+    {
+      "id": "q09",
+      "type": "paraphrase",
+      "question": "What did the priestess reply when his friend asked whether anybody surpassed Socrates in wisdom?",
+      "expected_chunk_ids": [
+        "plato_apology-010",
+        "plato_apology-011"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-009",
+        "plato_apology-054",
+        "plato_apology-020",
+        "plato_apology-016",
+        "plato_apology-010"
+      ],
+      "answer": "The priestess at Delphi replied that there was no man wiser than Socrates [4].",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        4
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-016"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 19.1,
+        "llm_ms": 314.9
+      },
+      "claims": [
+        {
+          "claim": "The priestess at Delphi replied that there was no man wiser than Socrates.",
+          "supported": true,
+          "reason": "Passage [4] states, 'Chaerephon, as you know, was very impetuous in all his doings, and he went to Delphi and boldly asked the oracle to tell him whether—as I was saying, I must beg you not to interrupt—he asked the oracle to tell him whether anyone was wiser than I was, and the Pythian prophetess answered, that there was no man wiser.'"
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q10",
+      "type": "paraphrase",
+      "question": "Why won't Socrates parade his family before the jury to win their pity?",
+      "expected_chunk_ids": [
+        "plato_apology-046",
+        "plato_apology-047",
+        "plato_apology-048"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-033",
+        "plato_apology-054",
+        "plato_apology-049",
+        "plato_apology-047",
+        "plato_apology-027"
+      ],
+      "answer": "I can't find that in the texts I have.",
+      "exact_not_found": true,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [],
+      "cited_chunk_ids": [],
+      "invalid_citations": [],
+      "citations_valid": null,
+      "timings": {
+        "search_ms": 18.4,
+        "llm_ms": 459.5
+      },
+      "claims": [],
+      "faithfulness": null
+    },
+    {
+      "id": "q11",
+      "type": "paraphrase",
+      "question": "What did Socrates learn when he tested people who work with their hands?",
+      "expected_chunk_ids": [
+        "plato_apology-015"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-017",
+        "plato_apology-020",
+        "plato_apology-054",
+        "plato_apology-015",
+        "plato_apology-009"
+      ],
+      "answer": "Socrates learned that even good artisans fell into the same error as poets, thinking they knew more than they actually did. [4]",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        4
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-015"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 39.7,
+        "llm_ms": 401.6
+      },
+      "claims": [
+        {
+          "claim": "Socrates learned that even good artisans fell into the same error as poets, thinking they knew more than they actually did.",
+          "supported": true,
+          "reason": "Passage [4] states that Socrates observed good artisans making the same mistake as poets, believing they knew more than they did."
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q12",
+      "type": "paraphrase",
+      "question": "Do the authors of plays and verse understand their own works, according to Socrates?",
+      "expected_chunk_ids": [
+        "plato_apology-014"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-026",
+        "plato_apology-014",
+        "plato_apology-027",
+        "plato_apology-054",
+        "plato_apology-017"
+      ],
+      "answer": "According to Socrates in passage [2], the poets do not understand the meaning of their own poetry, as he states: \"I am almost ashamed to confess the truth, but I must say that there is hardly a person present who would not have talked better about their poetry than they did themselves.\"",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        2
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-014"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 38.9,
+        "llm_ms": 814.9
+      },
+      "claims": [
+        {
+          "claim": "According to Socrates, the authors of plays and verse do not understand their own works.",
+          "supported": true,
+          "reason": "Passage [2] states that Socrates observed that poets do not understand the meaning of their poetry."
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q13",
+      "type": "paraphrase",
+      "question": "What does Socrates propose the city give him in place of a punishment?",
+      "expected_chunk_ids": [
+        "plato_apology-050",
+        "plato_apology-051"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-054",
+        "plato_apology-050",
+        "plato_apology-035",
+        "plato_apology-053",
+        "plato_apology-047"
+      ],
+      "answer": "Socrates proposes that the penalty be thirty minæ, as stated in passage [1]: \"Let thirty minæ be the penalty; for which sum they will be ample security to you.\"",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        1
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-054"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 18.7,
+        "llm_ms": 831.3
+      },
+      "claims": [
+        {
+          "claim": "Socrates proposes that the penalty be thirty minæ.",
+          "supported": true,
+          "reason": "Passage [1] states 'Let thirty minæ be the penalty; for which sum they will be ample security to you.'"
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q14",
+      "type": "paraphrase",
+      "question": "Why does Socrates refuse to accept banishment as his sentence?",
+      "expected_chunk_ids": [
+        "plato_apology-053"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-054",
+        "plato_apology-035",
+        "plato_apology-053",
+        "plato_apology-047",
+        "plato_apology-033"
+      ],
+      "answer": "[3] Socrates refuses to accept banishment as his sentence because he believes it would be discreditable to himself, to the city, and to the state. He is concerned about how his actions would be perceived, especially given his reputation for wisdom. He fears that if he were to flee, it would appear that he values his life more than his principles, and that this would be a dishonorable act.",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        3
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-053"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 18.7,
+        "llm_ms": 1386.6
+      },
+      "claims": [
+        {
+          "claim": "Socrates refuses to accept banishment because he believes it would be discreditable to himself.",
+          "supported": true,
+          "reason": "Passage [3] states that 'One who has reached my years, and who has a name for wisdom, ought not to demean himself.'"
+        },
+        {
+          "claim": "Socrates believes it would be discreditable to the city and the state.",
+          "supported": true,
+          "reason": "Passage [3] states that 'and to you, and to the whole state. And if those among you who are said to be superior in wisdom and courage, and any other virtue, demean themselves in this way, how shameful is their conduct!'"
+        },
+        {
+          "claim": "Socrates is concerned about how his actions would be perceived, especially given his reputation for wisdom.",
+          "supported": true,
+          "reason": "Passage [3] states that 'and to you, and to the whole state. And if those among you who are said to be superior in wisdom and courage, and any other virtue, demean themselves in this way, how shameful is their conduct!'"
+        },
+        {
+          "claim": "He fears that if he were to flee, it would appear that he values his life more than his principles.",
+          "supported": true,
+          "reason": "Passage [3] states that 'and if they are done, you ought not to permit them; you ought rather to show that you are far more disposed to condemn the man who gets up a doleful scene and makes the city ridiculous, than him who holds his peace.'"
+        },
+        {
+          "claim": "He fears that this would be a dishonorable act.",
+          "supported": true,
+          "reason": "Passage [3] states that 'and if they are done, you ought not to permit them; you ought rather to show that you are far more disposed to condemn the man who gets up a doleful scene and makes the city ridiculous, than him who holds his peace.'"
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q15",
+      "type": "paraphrase",
+      "question": "What is the private divine warning Socrates has had since boyhood, and what does it do?",
+      "expected_chunk_ids": [
+        "plato_apology-040",
+        "plato_apology-058"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-040",
+        "plato_apology-054",
+        "plato_apology-035",
+        "plato_apology-016",
+        "plato_apology-033"
+      ],
+      "answer": "[1] Socrates has had a private divine warning since boyhood, which is a kind of voice that comes to him and is the divinity which Meletus ridicules in the indictment. This sign, which is a voice, first began to come to Socrates when he was a child and it always forbids but never commands him to do anything which he is going to do. [1]",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        1
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-040"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 18.0,
+        "llm_ms": 1109.5
+      },
+      "claims": [
+        {
+          "claim": "Socrates has had a private divine warning since boyhood.",
+          "supported": true,
+          "reason": "Passage [1] states that the sign or voice has been coming to Socrates 'first began to come to me when I was a child'."
+        },
+        {
+          "claim": "This warning is a kind of voice.",
+          "supported": true,
+          "reason": "Passage [1] explicitly mentions that 'this sign, which is a kind of voice'."
+        },
+        {
+          "claim": "The voice always forbids but never commands him to do anything which he is going to do.",
+          "supported": true,
+          "reason": "Passage [1] states that 'it always forbids but never commands me to do anything which I am going to do'."
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q16",
+      "type": "paraphrase",
+      "question": "What did Socrates do when the oligarchs ordered him to help seize a man for execution?",
+      "expected_chunk_ids": [
+        "plato_apology-042"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-042",
+        "plato_apology-054",
+        "plato_apology-035",
+        "plato_apology-047",
+        "plato_apology-050"
+      ],
+      "answer": "[1] Socrates showed that he cared not for death and that his only concern was to avoid doing wrong or unrighteous things. When the oligarchs ordered him to help seize Leon the Salaminian for execution, Socrates went home quietly instead of obeying the command.",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        1
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-042"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 18.2,
+        "llm_ms": 782.7
+      },
+      "claims": [
+        {
+          "claim": "Socrates showed that he cared not for death and that his only concern was to avoid doing wrong or unrighteous things.",
+          "supported": true,
+          "reason": "Passage [1] states that Socrates showed he cared not a straw for death and that his great and only care was lest he should do an unrighteous or unholy thing."
+        },
+        {
+          "claim": "When the oligarchs ordered him to help seize Leon the Salaminian for execution, Socrates went home quietly instead of obeying the command.",
+          "supported": true,
+          "reason": "Passage [1] states that Socrates went quietly home when the oligarchs ordered him to bring Leon the Salaminian from Salamis."
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q17",
+      "type": "paraphrase",
+      "question": "When Socrates served on the city council, how did he stand against an unlawful group trial?",
+      "expected_chunk_ids": [
+        "plato_apology-041"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-019",
+        "plato_apology-006",
+        "plato_apology-054",
+        "plato_apology-047",
+        "plato_apology-009"
+      ],
+      "answer": "I can't find that in the texts I have.",
+      "exact_not_found": true,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [],
+      "cited_chunk_ids": [],
+      "invalid_citations": [],
+      "citations_valid": null,
+      "timings": {
+        "search_ms": 19.9,
+        "llm_ms": 206.4
+      },
+      "claims": [],
+      "faithfulness": null
+    },
+    {
+      "id": "q18",
+      "type": "paraphrase",
+      "question": "Did Socrates ever earn a living from his conversations?",
+      "expected_chunk_ids": [
+        "plato_apology-007",
+        "plato_apology-039",
+        "plato_apology-043"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-054",
+        "plato_apology-009",
+        "plato_apology-006",
+        "plato_apology-033",
+        "plato_apology-047"
+      ],
+      "answer": "I can't find that in the texts I have.",
+      "exact_not_found": true,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [],
+      "cited_chunk_ids": [],
+      "invalid_citations": [],
+      "citations_valid": null,
+      "timings": {
+        "search_ms": 20.0,
+        "llm_ms": 212.5
+      },
+      "claims": [],
+      "faithfulness": null
+    },
+    {
+      "id": "q19",
+      "type": "concept",
+      "question": "Why does Socrates not fear death?",
+      "expected_chunk_ids": [
+        "plato_apology-034",
+        "plato_apology-058",
+        "plato_apology-059",
+        "plato_apology-061"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-033",
+        "plato_apology-054",
+        "plato_apology-035",
+        "plato_apology-034",
+        "plato_apology-055"
+      ],
+      "answer": "Socrates does not fear death because he believes that the fear of death is a pretense of wisdom, rather than real wisdom. He states, \"For the fear of death is indeed the pretence of wisdom, and not real wisdom, being a pretence of knowing the unknown\" [4]. He also notes that he does not know whether death might be the greatest good, and thus he does not fear it as a certain evil.",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        4
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-034"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 19.4,
+        "llm_ms": 1434.7
+      },
+      "claims": [
+        {
+          "claim": "Socrates does not fear death because he believes that the fear of death is a pretense of wisdom, rather than real wisdom.",
+          "supported": true,
+          "reason": "Found in passage [4]: 'For the fear of death is indeed the pretence of wisdom, and not real wisdom, being a pretence of knowing the unknown.'"
+        },
+        {
+          "claim": "He states that he does not know whether death might be the greatest good, and thus he does not fear it as a certain evil.",
+          "supported": true,
+          "reason": "Found in passage [4]: 'But I do know that injustice and disobedience to a better, whether God or man, is evil and dishonourable, and I will never fear or avoid a possible good rather than a certain evil.'"
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q20",
+      "type": "concept",
+      "question": "What does Socrates think might happen to us after we die?",
+      "expected_chunk_ids": [
+        "plato_apology-059",
+        "plato_apology-060"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-033",
+        "plato_apology-035",
+        "plato_apology-054",
+        "plato_apology-034",
+        "plato_apology-047"
+      ],
+      "answer": "I can't find that in the texts I have.",
+      "exact_not_found": true,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [],
+      "cited_chunk_ids": [],
+      "invalid_citations": [],
+      "citations_valid": null,
+      "timings": {
+        "search_ms": 20.3,
+        "llm_ms": 557.3
+      },
+      "claims": [],
+      "faithfulness": null
+    },
+    {
+      "id": "q21",
+      "type": "concept",
+      "question": "Does Socrates claim to know more than everyone else, and if not, what gives him the edge?",
+      "expected_chunk_ids": [
+        "plato_apology-012",
+        "plato_apology-016",
+        "plato_apology-034"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-017",
+        "plato_apology-054",
+        "plato_apology-006",
+        "plato_apology-027",
+        "plato_apology-033"
+      ],
+      "answer": "I can't find that in the texts I have.",
+      "exact_not_found": true,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [],
+      "cited_chunk_ids": [],
+      "invalid_citations": [],
+      "citations_valid": null,
+      "timings": {
+        "search_ms": 18.9,
+        "llm_ms": 195.5
+      },
+      "claims": [],
+      "faithfulness": null
+    },
+    {
+      "id": "q22",
+      "type": "concept",
+      "question": "Why did Socrates never take up a career in government?",
+      "expected_chunk_ids": [
+        "plato_apology-040",
+        "plato_apology-043",
+        "plato_apology-050"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-054",
+        "plato_apology-033",
+        "plato_apology-040",
+        "plato_apology-027",
+        "plato_apology-047"
+      ],
+      "answer": "According to passage [3], Socrates never took up a career in government because he was certain that engaging in politics would lead to his demise. He believed that anyone who honestly strives against the many lawless and unrighteous deeds in a state would not save their life. Therefore, Socrates avoided public political roles to avoid perishing. [3]",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        3
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-040"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 19.7,
+        "llm_ms": 1269.2
+      },
+      "claims": [
+        {
+          "claim": "Socrates never took up a career in government because he was certain that engaging in politics would lead to his demise.",
+          "supported": true,
+          "reason": "Passage [3] states that Socrates believes if he had engaged in politics, he would have perished long ago."
+        },
+        {
+          "claim": "He believed that anyone who honestly strives against the many lawless and unrighteous deeds in a state would not save their life.",
+          "supported": true,
+          "reason": "Passage [3] directly quotes Socrates saying, 'And rightly, as I think. For I am certain, O men of Athens, that if I had engaged in politics, I should have perished long ago, and done no good either to you or to myself.'"
+        },
+        {
+          "claim": "Therefore, Socrates avoided public political roles to avoid perishing.",
+          "supported": true,
+          "reason": "Passage [3] states, 'And do not be offended at my telling you the truth: for the truth is, that no man who goes to war with you or any other multitude, honestly striving against the many lawless and unrighteous deeds which are done in a state, will save his life; he who will fight for the right, if he would live even for a brief space, must have a private station and not a public one.'"
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q23",
+      "type": "concept",
+      "question": "What does Socrates think people should prioritize in life?",
+      "expected_chunk_ids": [
+        "plato_apology-035",
+        "plato_apology-036"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-033",
+        "plato_apology-054",
+        "plato_apology-047",
+        "plato_apology-055",
+        "plato_apology-017"
+      ],
+      "answer": "According to Socrates in passage [1], people should prioritize doing what is right and avoiding disgrace, rather than fearing death or danger. He uses the example of Achilles, who \"utterly despised danger and death, and instead of fearing them, feared rather to live in dishonour.\" [1]",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        1
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-033"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 19.5,
+        "llm_ms": 1174.4
+      },
+      "claims": [
+        {
+          "claim": "People should prioritize doing what is right and avoiding disgrace.",
+          "supported": true,
+          "reason": "Passage [1] states that a good man 'ought only to consider whether in doing anything he is doing right or wrong—acting the part of a good man or of a bad.' It also mentions that 'he should not think of death or of anything but of disgrace.'"
+        },
+        {
+          "claim": "Socrates uses the example of Achilles to illustrate this point.",
+          "supported": true,
+          "reason": "Passage [1] explicitly mentions Achilles, stating that 'he utterly despised danger and death, and instead of fearing them, feared rather to live in dishonour.'"
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q24",
+      "type": "concept",
+      "question": "Why does Socrates believe his accusers cannot truly hurt him?",
+      "expected_chunk_ids": [
+        "plato_apology-037",
+        "plato_apology-061"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-003",
+        "plato_apology-019",
+        "plato_apology-027",
+        "plato_apology-006",
+        "plato_apology-054"
+      ],
+      "answer": "Socrates believes his accusers cannot truly hurt him because he values the examined life and the pursuit of virtue over avoiding harm. He states, \"daily to discourse about virtue, and of those other things about which you hear me examining myself and others, is the greatest good of man, and the unexamined life is not worth living\" [4]. This commitment to philosophy and self-examination is more important to Socrates than avoiding punishment.",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        4
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-006"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 18.4,
+        "llm_ms": 1185.3
+      },
+      "claims": [
+        {
+          "claim": "Socrates believes his accusers cannot truly hurt him because he values the examined life and the pursuit of virtue over avoiding harm.",
+          "supported": false,
+          "reason": "The passages do not explicitly state that Socrates believes his accusers cannot truly hurt him. The passages discuss Socrates' commitment to philosophy and self-examination, but do not directly address his belief about being unable to be truly hurt."
+        },
+        {
+          "claim": "Socrates states, 'daily to discourse about virtue, and of those other things about which you hear me examining myself and others, is the greatest good of man, and the unexamined life is not worth living' [4].",
+          "supported": true,
+          "reason": "This quote is directly stated in passage [4]."
+        }
+      ],
+      "faithfulness": 0.5
+    },
+    {
+      "id": "q25",
+      "type": "concept",
+      "question": "Why is Socrates so widely disliked in Athens?",
+      "expected_chunk_ids": [
+        "plato_apology-012",
+        "plato_apology-016",
+        "plato_apology-017",
+        "plato_apology-018"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-047",
+        "plato_apology-033",
+        "plato_apology-009",
+        "plato_apology-026",
+        "plato_apology-054"
+      ],
+      "answer": "I can't find that in the texts I have.",
+      "exact_not_found": true,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [],
+      "cited_chunk_ids": [],
+      "invalid_citations": [],
+      "citations_valid": null,
+      "timings": {
+        "search_ms": 18.4,
+        "llm_ms": 526.8
+      },
+      "claims": [],
+      "faithfulness": null
+    },
+    {
+      "id": "q26",
+      "type": "concept",
+      "question": "How does Socrates defend himself against the claim that he is a bad influence on young people?",
+      "expected_chunk_ids": [
+        "plato_apology-020",
+        "plato_apology-021",
+        "plato_apology-023",
+        "plato_apology-044"
+      ],
+      "retrieved_chunk_ids": [
+        "plato_apology-019",
+        "plato_apology-017",
+        "plato_apology-047",
+        "plato_apology-026",
+        "plato_apology-003"
+      ],
+      "answer": "Socrates defends himself against the claim that he is a bad influence on young people by stating that young men of the richer classes often come to him of their own accord because they enjoy hearing the pretenders examined and imitating him. He argues that when these young men are examined by others and their pretense of knowledge is exposed, they become angry with Socrates rather than themselves. Socrates claims that Meletus and others use ready-made charges against him, such as teaching things \"up in the clouds and under the earth,\" and making the worse appear the better cause, without truly understanding the accusations [2].",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        2
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-017"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 19.1,
+        "llm_ms": 1612.4
+      },
+      "claims": [
+        {
+          "claim": "Socrates defends himself against the claim that he is a bad influence on young people by stating that young men of the richer classes often come to him of their own accord because they enjoy hearing the pretenders examined and imitating him.",
+          "supported": true,
+          "reason": "Passage [2] states: 'young men of the richer classes, who have not much to do, come about me of their own accord; they like to hear the pretenders examined, and they often imitate me, and proceed to examine others.'"
+        },
+        {
+          "claim": "He argues that when these young men are examined by others and their pretense of knowledge is exposed, they become angry with Socrates rather than themselves.",
+          "supported": true,
+          "reason": "Passage [2] states: 'and then those who are examined by them instead of being angry with themselves are angry with me.'"
+        },
+        {
+          "claim": "Socrates claims that Meletus and others use ready-made charges against him, such as teaching things 'up in the clouds and under the earth,' and making the worse appear the better cause, without truly understanding the accusations.",
+          "supported": true,
+          "reason": "Passage [2] states: 'and then if somebody asks them, Why, what evil does he practise or teach? they do not know, and cannot tell; but in order that they may not appear to be at a loss, they repeat the ready-made charges which are used against all philosophers about teaching things up in the clouds and under the earth, and having no gods, and making the worse appear the better cause.'"
+        }
+      ],
+      "faithfulness": 1.0
+    },
+    {
+      "id": "q27",
+      "type": "unanswerable",
+      "question": "What poison was Socrates given when he was executed?",
+      "expected_chunk_ids": [],
+      "retrieved_chunk_ids": [
+        "plato_apology-035",
+        "plato_apology-033",
+        "plato_apology-055",
+        "plato_apology-047",
+        "plato_apology-009"
+      ],
+      "answer": "I can't find that in the texts I have.",
+      "exact_not_found": true,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [],
+      "cited_chunk_ids": [],
+      "invalid_citations": [],
+      "citations_valid": null,
+      "timings": {
+        "search_ms": 17.9,
+        "llm_ms": 213.8
+      },
+      "refused": true,
+      "refusal_reason": "The answer clearly states that the information is not available in the texts."
+    },
+    {
+      "id": "q28",
+      "type": "unanswerable",
+      "question": "Why did Socrates turn down Crito's plan to help him escape from prison?",
+      "expected_chunk_ids": [],
+      "retrieved_chunk_ids": [
+        "plato_apology-054",
+        "plato_apology-035",
+        "plato_apology-033",
+        "plato_apology-027",
+        "plato_apology-055"
+      ],
+      "answer": "Socrates turned down Crito's plan to help him escape from prison because he believed it would be disobedient to the God and that the unexamined life is not worth living. He stated, \"For if I tell you that to do as you say would be a disobedience to the God, and therefore that I cannot hold my tongue, you will not believe that I am serious\" [1].",
+      "exact_not_found": false,
+      "is_refusal": false,
+      "is_empty": false,
+      "cited_numbers": [
+        1
+      ],
+      "cited_chunk_ids": [
+        "plato_apology-054"
+      ],
+      "invalid_citations": [],
+      "citations_valid": true,
+      "timings": {
+        "search_ms": 18.7,
+        "llm_ms": 1313.5
+      },
+      "refused": false,
+      "refusal_reason": "The answer provides a reason for Socrates' decision, even if it does not directly quote the text."
+    },
+    {
+      "id": "q29",
+      "type": "unanswerable",
+      "question": "What did Socrates' wife Xanthippe say during the trial?",
+      "expected_chunk_ids": [],
+      "retrieved_chunk_ids": [
+        "plato_apology-006",
+        "plato_apology-054",
+        "plato_apology-019",
+        "plato_apology-035",
+        "plato_apology-001"
+      ],
+      "answer": "I can't find that in the texts I have.",
+      "exact_not_found": true,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [],
+      "cited_chunk_ids": [],
+      "invalid_citations": [],
+      "citations_valid": null,
+      "timings": {
+        "search_ms": 39.4,
+        "llm_ms": 193.7
+      },
+      "refused": true,
+      "refusal_reason": "The answer clearly states that the information is not available in the texts."
+    },
+    {
+      "id": "q30",
+      "type": "unanswerable",
+      "question": "What is Plato's theory of Forms?",
+      "expected_chunk_ids": [],
+      "retrieved_chunk_ids": [
+        "plato_apology-026",
+        "plato_apology-054",
+        "plato_apology-017",
+        "plato_apology-045",
+        "plato_apology-006"
+      ],
+      "answer": "I can't find that in the texts I have.",
+      "exact_not_found": true,
+      "is_refusal": true,
+      "is_empty": false,
+      "cited_numbers": [],
+      "cited_chunk_ids": [],
+      "invalid_citations": [],
+      "citations_valid": null,
+      "timings": {
+        "search_ms": 19.0,
+        "llm_ms": 189.2
+      },
+      "refused": true,
+      "refusal_reason": "The answer explicitly states that the information is not available in the texts."
+    }
+  ]
+}

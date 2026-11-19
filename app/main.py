@@ -97,24 +97,36 @@ def search(
     return search_chunks(q, k, embedder)
 
 
+class Answered(BaseModel):
+    """What the /ask pipeline produced, including the retrieved chunks (the API shows less)."""
+
+    hits: list[SearchHit]
+    answer: str
+    timings: Timings
+
+
+def answer_question(question: str, embedder: Embedder, llm: ChatsWithLLM) -> Answered:
+    """The /ask pipeline: retrieve passages, then answer from them. Also used by the evals."""
+    start = time.perf_counter()
+    hits = search_chunks(question, ASK_PASSAGES, embedder)
+    search_ms = elapsed_ms(start)
+
+    start = time.perf_counter()
+    # With nothing to ground an answer in, skip the LLM rather than let it answer from memory.
+    answer = llm.chat(build_messages(question, hits)) if hits else NOT_FOUND
+    llm_ms = elapsed_ms(start) if hits else 0.0
+
+    return Answered(hits=hits, answer=answer, timings=Timings(search_ms=search_ms, llm_ms=llm_ms))
+
+
 @app.post("/ask")
 def ask(
     body: AskRequest,
     embedder: Embedder = Depends(get_embedder),
     llm: ChatsWithLLM = Depends(get_llm),
 ) -> AskResponse:
-    start = time.perf_counter()
-    hits = search_chunks(body.question, ASK_PASSAGES, embedder)
-    search_ms = elapsed_ms(start)
-
-    start = time.perf_counter()
-    # With nothing to ground an answer in, skip the LLM rather than let it answer from memory.
-    answer = llm.chat(build_messages(body.question, hits)) if hits else NOT_FOUND
-    llm_ms = elapsed_ms(start) if hits else 0.0
-
-    return AskResponse(
-        answer=answer, sources=to_sources(hits), timings=Timings(search_ms=search_ms, llm_ms=llm_ms)
-    )
+    result = answer_question(body.question, embedder, llm)
+    return AskResponse(answer=result.answer, sources=to_sources(result.hits), timings=result.timings)
 
 
 @app.post("/ask/stream", response_class=EventSourceResponse)
